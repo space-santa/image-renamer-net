@@ -42,5 +42,12 @@ namespace ImageRenamer.UnitTests
             string result = FileRenamer.GetNewName("../../../testdata/VID_20180613_152330.mp4");
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void ValidEXIFDataShouldReturnExpected()
+        {
+            string result = FileRenamer.GetNewName("../../../testdata/good.jpg");
+            Assert.Equal(expected, result);
+        }
     }
 }
