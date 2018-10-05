@@ -25,21 +25,21 @@ namespace ImageRenamer.UnitTests
         [Fact]
         public void TestBadStringShouldThrow()
         {
-            Exception ex = Assert.Throws<TimestampException>(() => FileRenamer.GetNewName("blarg"));
+            Exception ex = Assert.Throws<TimestampException>(() => FileRenamer.GetNewName("../../../testdata/blarg"));
             Assert.Equal("String blarg doesn't match any format.", ex.Message);
         }
 
         [Fact]
         public void TestImgStringShouldReturnExpected()
         {
-            string result = FileRenamer.GetNewName("IMG_20180613_152330.jpg");
+            string result = FileRenamer.GetNewName("../../../testdata/IMG_20180613_152330.jpg");
             Assert.Equal(expected, result);
         }
 
         [Fact]
         public void TestVidStringShouldReturnExpected()
         {
-            string result = FileRenamer.GetNewName("VID_20180613_152330.mp4");
+            string result = FileRenamer.GetNewName("../../../testdata/VID_20180613_152330.mp4");
             Assert.Equal(expected, result);
         }
     }

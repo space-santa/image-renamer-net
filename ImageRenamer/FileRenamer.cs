@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 
 namespace ImageRenamer
 {
@@ -34,7 +35,10 @@ namespace ImageRenamer
             }
             catch (Exception ex)
             {
-                if (ex is MissingTagException || ex is ArgumentException || ex is System.IO.EndOfStreamException)
+                if (ex is MissingTagException || 
+                    ex is ArgumentException || 
+                    ex is EndOfStreamException || 
+                    ex is ExifLibException)
                 {
                     origTimestamp = GetDateTimeFromFilename(path);
                 }
@@ -57,6 +61,9 @@ namespace ImageRenamer
             {
                 throw new ArgumentException("Can't process empty string.");
             }
+
+
+            fileName = Path.GetFileName(fileName);
 
             List<string> formats = new List<string>();
             formats.Add("yyyy\\:MM\\:dd HH\\:mm\\:ss");
