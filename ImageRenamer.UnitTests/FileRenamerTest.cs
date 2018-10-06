@@ -61,13 +61,18 @@ namespace ImageRenamer.UnitTests
             Assert.Equal(newExpectedPath, result);
         }
 
+        private string GetExpectedResult(string path)
+        {
+            string folder = Directory.GetParent(path).ToString();
+            string newExpectedPath = Path.Combine(folder, $"{expected}.jpg");
+            return newExpectedPath;
+        }
+
         [Fact]
         public void TestGoodFileShouldMove()
         {
             string path = "../../../testdata/good.jpg";
-            string folder = Directory.GetParent(path).ToString();
-            string newExpectedPath = Path.Combine(folder, $"{expected}.jpg");
-            string result = FileRenamer.GetNewFullPath(path);
+            string expectedResult = GetExpectedResult(path);
 
             var mock = new MoverMock();
             var fileRenamer = new FileRenamer(mock);
@@ -75,7 +80,7 @@ namespace ImageRenamer.UnitTests
             files.Add(path);
             fileRenamer.RenameFiles(files);
             Assert.Equal(mock.from, path);
-            Assert.Equal(mock.to, result);
+            Assert.Equal(mock.to, expectedResult);
         }
     }
 }
