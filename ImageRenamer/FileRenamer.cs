@@ -23,9 +23,16 @@ namespace ImageRenamer
         }
     }
 
-    public static class FileRenamer
+    public class FileRenamer
     {
-        public static void RenameFiles(List<string> paths)
+        IMover _mover;
+
+        public FileRenamer(IMover mover)
+        {
+            _mover = mover;
+        }
+
+        public void RenameFiles(List<string> paths)
         {
             foreach (string path in paths)
             {
@@ -33,12 +40,12 @@ namespace ImageRenamer
             }
         }
 
-        private static void MoveFileIfValidMedia(string path)
+        private void MoveFileIfValidMedia(string path)
         {
             try
             {
                 var to = GetNewFullPath(path);
-                File.Move(path, to);
+                _mover.Move(path, to);
             }
             catch (IOException ex)
             {

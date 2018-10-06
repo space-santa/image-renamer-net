@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using ImageRenamer;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ImageRenamer.UnitTests
 {
@@ -58,6 +59,23 @@ namespace ImageRenamer.UnitTests
             string newExpectedPath = Path.Combine(folder, $"{expected}.jpg");
             string result = FileRenamer.GetNewFullPath(path);
             Assert.Equal(newExpectedPath, result);
+        }
+
+        [Fact]
+        public void TestGoodFileShouldMove()
+        {
+            string path = "../../../testdata/good.jpg";
+            string folder = Directory.GetParent(path).ToString();
+            string newExpectedPath = Path.Combine(folder, $"{expected}.jpg");
+            string result = FileRenamer.GetNewFullPath(path);
+
+            var mock = new MoverMock();
+            var fileRenamer = new FileRenamer(mock);
+            var files = new List<string>();
+            files.Add(path);
+            fileRenamer.RenameFiles(files);
+            Assert.Equal(mock.from, path);
+            Assert.Equal(mock.to, result);
         }
     }
 }
