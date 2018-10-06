@@ -64,8 +64,7 @@ namespace ImageRenamer.UnitTests
         private string GetExpectedResult(string path)
         {
             string folder = Directory.GetParent(path).ToString();
-            string newExpectedPath = Path.Combine(folder, $"{expected}.jpg");
-            return newExpectedPath;
+            return Path.Combine(folder, $"{expected}.jpg");
         }
 
         [Fact]
