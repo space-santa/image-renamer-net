@@ -25,6 +25,41 @@ namespace ImageRenamer
 
     public static class FileRenamer
     {
+        public static void RenameFiles(List<string> paths)
+        {
+            foreach (string path in paths)
+            {
+                MoveFileIfValidMedia(path);
+            }
+        }
+
+        private static void MoveFileIfValidMedia(string path)
+        {
+            try
+            {
+                var to = GetNewFullPath(path);
+                File.Move(path, to);
+            }
+            catch (IOException ex)
+            {
+                // This we want to log. Moving the file should cause no problem.
+                Console.WriteLine(ex);
+            }
+            catch (Exception)
+            {
+                // Missing EXIF data, bad filename, so most likely not a media file that we want to rename.
+            }
+        }
+
+        public static string GetNewFullPath(string path)
+        {
+            string oldName = Path.GetFileNameWithoutExtension(path);
+            string newName = GetNewName(path);
+            string extension = Path.GetExtension(path).ToLower();
+            string folder = Directory.GetParent(path).ToString();
+            return Path.Combine(folder, $"{newName}{extension}");
+        }
+
         public static string GetNewName(string path)
         {
             DateTime origTimestamp;
@@ -35,9 +70,9 @@ namespace ImageRenamer
             }
             catch (Exception ex)
             {
-                if (ex is MissingTagException || 
-                    ex is ArgumentException || 
-                    ex is EndOfStreamException || 
+                if (ex is MissingTagException ||
+                    ex is ArgumentException ||
+                    ex is EndOfStreamException ||
                     ex is ExifLibException)
                 {
                     origTimestamp = GetDateTimeFromFilename(path);
@@ -50,6 +85,7 @@ namespace ImageRenamer
 
             return FormatDateTime(origTimestamp);
         }
+
         private static string FormatDateTime(DateTime dateTime)
         {
             return dateTime.ToString("yyyy-MM-dd_HH.mm.ss");

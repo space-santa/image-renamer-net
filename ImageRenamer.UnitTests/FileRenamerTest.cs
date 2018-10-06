@@ -49,5 +49,15 @@ namespace ImageRenamer.UnitTests
             string result = FileRenamer.GetNewName("../../../testdata/good.jpg");
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void TestGetNewFullPath()
+        {
+            string path = "../../../testdata/good.jpg";
+            string folder = Directory.GetParent(path).ToString();
+            string newExpectedPath = Path.Combine(folder, $"{expected}.jpg");
+            string result = FileRenamer.GetNewFullPath(path);
+            Assert.Equal(newExpectedPath, result);
+        }
     }
 }
