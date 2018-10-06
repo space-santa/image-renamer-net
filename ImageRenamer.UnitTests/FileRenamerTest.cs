@@ -61,17 +61,61 @@ namespace ImageRenamer.UnitTests
             Assert.Equal(newExpectedPath, result);
         }
 
-        private string GetExpectedResult(string path)
+        private string GetExpectedResult(string path, string extension)
         {
             string folder = Directory.GetParent(path).ToString();
-            return Path.Combine(folder, $"{expected}.jpg");
+            return Path.Combine(folder, $"{expected}.{extension}");
         }
 
         [Fact]
-        public void TestGoodFileShouldMove()
+        public void TestBadJpgNameShouldNotMove()
+        {
+            string path = "../../../testdata/blarg";
+
+            var mock = new MoverMock();
+            var fileRenamer = new FileRenamer(mock);
+            var files = new List<string>();
+            files.Add(path);
+            fileRenamer.RenameFiles(files);
+            Assert.Null(mock.from);
+            Assert.Null(mock.to);
+        }
+
+        [Fact]
+        public void TestValidJpgNameShouldMove()
+        {
+            string path = "../../../testdata/IMG_20180613_152330.jpg";
+            string expectedResult = GetExpectedResult(path, "jpg");
+
+            var mock = new MoverMock();
+            var fileRenamer = new FileRenamer(mock);
+            var files = new List<string>();
+            files.Add(path);
+            fileRenamer.RenameFiles(files);
+            Assert.Equal(mock.from, path);
+            Assert.Equal(mock.to, expectedResult);
+        }
+
+        [Fact]
+        public void TestValidMp4NameShouldMove()
+        {
+            string path = "../../../testdata/VID_20180613_152330.mp4";
+            string expectedResult = GetExpectedResult(path, "mp4");
+
+            var mock = new MoverMock();
+            var fileRenamer = new FileRenamer(mock);
+            var files = new List<string>();
+            files.Add(path);
+            fileRenamer.RenameFiles(files);
+            Assert.Equal(mock.from, path);
+            Assert.Equal(mock.to, expectedResult);
+        }
+
+        [Fact]
+        public void TestValidExifShouldMove()
         {
             string path = "../../../testdata/good.jpg";
-            string expectedResult = GetExpectedResult(path);
+            string expectedResult = GetExpectedResult(path, "jpg");
 
             var mock = new MoverMock();
             var fileRenamer = new FileRenamer(mock);
