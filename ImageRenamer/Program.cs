@@ -12,13 +12,16 @@ namespace ImageRenamer
 
             foreach (string arg in args)
             {
-                if (File.Exists(arg))
+                var path = Path.Combine(Directory.GetCurrentDirectory().ToString(), arg);
+
+                if (File.Exists(path))
                 {
-                    paths.Add(arg);
+                    paths.Add(path);
                 }
             }
 
             var renamer = new FileRenamer(new Mover());
+            renamer.RenameFiles(paths);
         }
     }
 }
