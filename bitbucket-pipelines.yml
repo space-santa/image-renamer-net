@@ -18,3 +18,4 @@ pipelines:
           - if [ ! -f ./tmptest/2018-06-13_15.23.30.mp4 ]; then exit 1; fi
           - if [ ! -f ./tmptest/2018-06-13_15.23.30.jpg ]; then exit 1; fi
           - if [ ! -f ./tmptest/2018-06-13_15.23.30_\(1\).jpg ]; then exit 1; fi
+          - dotnet test ./ImageRenamer.UnitTests/ImageRenamer.UnitTests.csproj
