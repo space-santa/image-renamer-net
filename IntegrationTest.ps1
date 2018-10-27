@@ -20,7 +20,10 @@ function CheckFile {
 
 Copy-Item ./ImageRenamer.UnitTests/testdata -Destination tmptest -Recurse
 dotnet publish ImageRenamer/ImageRenamer.csproj -c 'Release'
-dotnet ./ImageRenamer/bin/Release/netcoreapp2.1/publish/ImageRenamer.dll .\tmptest\*
+dotnet ./ImageRenamer/bin/Release/netcoreapp2.1/publish/ImageRenamer.dll .\tmptest\blarg
+dotnet ./ImageRenamer/bin/Release/netcoreapp2.1/publish/ImageRenamer.dll .\tmptest\good.jpg
+dotnet ./ImageRenamer/bin/Release/netcoreapp2.1/publish/ImageRenamer.dll .\tmptest\IMG_20180613_152330.jpg
+dotnet ./ImageRenamer/bin/Release/netcoreapp2.1/publish/ImageRenamer.dll .\tmptest\VID_20180613_152330.mp4
 
 Write-Host
 Write-Host "Checking..."
