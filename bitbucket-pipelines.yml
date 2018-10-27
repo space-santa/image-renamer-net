@@ -11,15 +11,10 @@ pipelines:
         caches:
           - dotnetcore
         script: # Modify the comma`nds below to build your repository.
-        # Install system components
-          - sudo apt-get update
-          - sudo apt-get install -y curl gnupg apt-transport-https
-        # Import the public repository GPG keys
-          - curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-        # Register the Microsoft Product feed
-          - sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list'
-        # Update the list of products
-          - sudo apt-get update
-        # Install PowerShell
-          - sudo apt-get install -y powershell
-          - pwsh IntegrationTest.ps1
+          - cp -r ./ImageRenamer.UnitTests/testdata tmptest
+          - dotnet publish ImageRenamer/ImageRenamer.csproj -c 'Release'
+          - dotnet ./ImageRenamer/bin/Release/netcoreapp2.1/publish/ImageRenamer.dll ./tmptest/*
+          - if [ ! -f ./tmptest/blarg ]; then exit 1; fi
+          - if [ ! -f ./tmptest/2018-06-13_15.23.30.mp4 ]; then exit 1; fi
+          - if [ ! -f ./tmptest/2018-06-13_15.23.30.jpg ]; then exit 1; fi
+          - if [ ! -f ./tmptest/2018-06-13_15.23.30_\(1\).jpg ]; then exit 1; fi
