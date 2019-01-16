@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ImageRenamer\ImageRenamer.csproj" />
+    <ProjectReference Include="..\LibImageRenamer\LibImageRenamer.csproj" />
   </ItemGroup>
 
 </Project>
