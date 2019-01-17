@@ -8,13 +8,21 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
-        <Button x:Name="OpenButton" Click="OpenButton_ClickAsync" HorizontalAlignment="Center" FontSize="36">📂</Button>
-        <ListBox x:Name="PreviewList" HorizontalAlignment="Center" MaxHeight="700"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenButton" Click="OpenButton_ClickAsync" HorizontalAlignment="Center" FontSize="36">📂</Button>
+        <ListBox Grid.Row="1" Grid.Column="0" x:Name="PreviewList" HorizontalAlignment="Center" MaxHeight="700"/>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="RenameButton" Click="RenameButton_ClickAsync" FontSize="36">⚙</Button>
             <Button x:Name="CancelButton" Click="CancelButton_Click" FontSize="36">❌</Button>
             <Button x:Name="ExitButton" Click="ExitButton_Click" FontSize="36">🚪</Button>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Page>
