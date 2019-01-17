@@ -67,13 +67,20 @@ namespace ImageRenamer
             return Path.Combine(folder, $"{newName}{extension}");
         }
 
-        public static string GetNewName(string path)
+        public static string GetNewName(string path, Stream stream = null)
         {
             DateTime origTimestamp;
 
             try
             {
-                origTimestamp = GetOrigDateTime(path);
+                if (stream == null)
+                {
+                    origTimestamp = GetOrigDateTime(path);
+                }
+                else
+                {
+                    origTimestamp = GetOrigDateTime(stream);
+                }
             }
             catch (Exception ex)
             {
@@ -134,15 +141,28 @@ namespace ImageRenamer
         {
             using (ExifReader reader = new ExifReader(path))
             {
-                // Extract the tag data using the ExifTags enumeration
-                DateTime datePictureTaken;
-                if (reader.GetTagValue<DateTime>(ExifTags.DateTimeOriginal, out datePictureTaken))
-                {
-                    return datePictureTaken;
-                }
-
-                throw new MissingTagException();
+                return GetOrigDateTimeFromExifReader(reader);
             }
+        }
+
+        private static DateTime GetOrigDateTime(Stream file)
+        {
+            using (ExifReader reader = new ExifReader(file))
+            {
+                return GetOrigDateTimeFromExifReader(reader);
+            }
+        }
+
+        private static DateTime GetOrigDateTimeFromExifReader(ExifReader reader)
+        {
+            // Extract the tag data using the ExifTags enumeration
+            DateTime datePictureTaken;
+            if (reader.GetTagValue<DateTime>(ExifTags.DateTimeOriginal, out datePictureTaken))
+            {
+                return datePictureTaken;
+            }
+
+            throw new MissingTagException();
         }
     }
 }
