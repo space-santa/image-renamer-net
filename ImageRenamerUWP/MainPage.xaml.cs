@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -26,13 +27,20 @@ namespace ImageRenamerUWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        IReadOnlyList<StorageFile> files;
+        IReadOnlyList<IStorageItem> files;
         ObservableCollection<string> viewList = new ObservableCollection<string>();
+        public FileActivatedEventArgs fileEventArgs { get; set; } = null;
 
         public MainPage()
         {
             this.InitializeComponent();
             PreviewList.ItemsSource = viewList;
+        }
+
+        public void FileActivateRename()
+        {
+            files = fileEventArgs.Files;
+            UpdateListViewAsync();
         }
 
         private async void OpenButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -47,6 +55,11 @@ namespace ImageRenamerUWP
 
             files = await picker.PickMultipleFilesAsync();
 
+            UpdateListViewAsync();
+        }
+
+        private async void UpdateListViewAsync()
+        {
             foreach (StorageFile file in files)
             {
                 var tmpStream = await file.OpenStreamForReadAsync();

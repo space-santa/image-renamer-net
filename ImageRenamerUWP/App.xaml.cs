@@ -73,6 +73,30 @@ namespace ImageRenamerUWP
             }
         }
 
+        protected override void OnFileActivated(FileActivatedEventArgs args)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            // Do not repeat app initialization when the Window already has content,
+            // just ensure that the window is active
+            if (rootFrame == null)
+            {
+                // Create a Frame to act as the navigation context and navigate to the first page
+                rootFrame = new Frame();
+                rootFrame.NavigationFailed += OnNavigationFailed;
+                // Place the frame in the current Window
+                Window.Current.Content = rootFrame;
+                rootFrame.Navigate(typeof(MainPage));
+            }
+
+            var p = rootFrame.Content as MainPage;
+            p.fileEventArgs = args;
+            p.FileActivateRename();
+
+            // Ensure the current window is active 
+            Window.Current.Activate();
+        }
+
         /// <summary>
         /// Invoked when Navigation to a certain page fails
         /// </summary>
