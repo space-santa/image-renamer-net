@@ -73,7 +73,20 @@ namespace ImageRenamerUWP
             {
                 var tmpStream = await file.OpenStreamForReadAsync();
                 var newName = $"{FileRenamer.GetNewName(file.Path, tmpStream)}{file.FileType}";
-                await file.RenameAsync(newName);
+
+                while (true)
+                {
+                    try
+                    {
+                        await file.RenameAsync(newName);
+                        break;
+                    }
+                    catch
+                    {
+                        newName = $"extra_{newName}";
+                        // TODO: Make this hack less disgusting. 
+                    }
+                }
             }
             viewList.Clear();
         }
