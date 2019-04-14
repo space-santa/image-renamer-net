@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap uap2 uap3 mp">
-  <Identity Name="4fbe68be-dbf7-4a32-953e-17d36574cdf7" Publisher="CN=claus" Version="1.0.2.0" />
+  <Identity Name="4fbe68be-dbf7-4a32-953e-17d36574cdf7" Publisher="CN=claus" Version="1.0.3.0" />
   <mp:PhoneIdentity PhoneProductId="4fbe68be-dbf7-4a32-953e-17d36574cdf7" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ImageRenamerUWP</DisplayName>
