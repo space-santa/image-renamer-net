@@ -32,7 +32,7 @@ namespace ImageRenamer.Wpf
             files = new string[0];
         }
 
-        private async void OpenButton_ClickAsync(object sender, RoutedEventArgs e)
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Media";
@@ -47,10 +47,10 @@ namespace ImageRenamer.Wpf
                 files = dlg.FileNames;
             }
 
-            UpdateListViewAsync();
+            UpdateListView();
         }
 
-        private async void UpdateListViewAsync()
+        private void UpdateListView()
         {
             foreach (string file in files)
             {
@@ -64,7 +64,7 @@ namespace ImageRenamer.Wpf
         private async void RenameButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             var renamer = new FileRenamer(new Mover());
-            renamer.RenameFiles(files.ToList());
+            await Task.Run(() => renamer.RenameFiles(files.ToList()));
             viewList.Clear();
         }
 

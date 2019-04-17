@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenButton" Click="OpenButton_ClickAsync" HorizontalAlignment="Center" FontSize="36">📂</Button>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenButton" Click="OpenButton_Click" HorizontalAlignment="Center" FontSize="36">📂</Button>
         <ListBox Grid.Row="1" Grid.Column="0" x:Name="PreviewList" HorizontalAlignment="Center" MaxHeight="700"/>
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="RenameButton" Click="RenameButton_ClickAsync" FontSize="36">⚙</Button>
