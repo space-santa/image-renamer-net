@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,29 @@ namespace ImageRenamer.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<string> viewList = new ObservableCollection<string>();
+
         public MainWindow()
         {
             InitializeComponent();
+            PreviewList.ItemsSource = viewList;
         }
 
-        private void ButtonExit_Click(object sender, RoutedEventArgs e)
+        private async void OpenButton_ClickAsync(object sender, RoutedEventArgs e)
+        { }
+
+        private async void UpdateListViewAsync()
+        { }
+
+        private async void RenameButton_ClickAsync(object sender, RoutedEventArgs e)
+        { }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewList.Clear();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

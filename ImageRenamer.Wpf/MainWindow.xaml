@@ -6,13 +6,22 @@
         xmlns:local="clr-namespace:ImageRenamer.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+
+    <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Hello .NET Core!" HorizontalAlignment="Center" VerticalAlignment="Center"
-               FontSize="40"/>
-        <Button Content="Exit" Grid.Row="1" FontSize="20" Click="ButtonExit_Click"/>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="OpenButton" Click="OpenButton_ClickAsync" HorizontalAlignment="Center" FontSize="36">📂</Button>
+        <ListBox Grid.Row="1" Grid.Column="0" x:Name="PreviewList" HorizontalAlignment="Center" MaxHeight="700"/>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="RenameButton" Click="RenameButton_ClickAsync" FontSize="36">⚙</Button>
+            <Button x:Name="CancelButton" Click="CancelButton_Click" FontSize="36">❌</Button>
+            <Button x:Name="ExitButton" Click="ExitButton_Click" FontSize="36">🚪</Button>
+        </StackPanel>
     </Grid>
 </Window>
