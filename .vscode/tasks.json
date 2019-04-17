@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/ImageRenamer/ImageRenamer.csproj"
+                "${workspaceFolder}/ImageRenamer.Wpf/ImageRenamer.Wpf.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
