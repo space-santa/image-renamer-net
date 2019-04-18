@@ -29,7 +29,25 @@ namespace ImageRenamer.Wpf
         {
             InitializeComponent();
             PreviewList.ItemsSource = viewList;
-            files = new string[0];
+
+            if (App.Args.Length > 0)
+            {
+                files = App.Args.Where(x => IsMedia(x)).ToArray();
+                UpdateListView();
+            }
+            else
+            {
+                files = new string[0];
+            }
+        }
+
+        private bool IsMedia(string arg)
+        {
+            var extension = Path.GetExtension(arg);
+            if (extension == ".jpg") return true;
+            if (extension == ".jpeg") return true;
+            if (extension == ".mp4") return true;
+            return false;
         }
 
         private void OpenButton_Click(object sender, RoutedEventArgs e)
