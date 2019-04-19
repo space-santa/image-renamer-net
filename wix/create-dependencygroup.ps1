@@ -17,7 +17,4 @@ $cleanDirs | ForEach-Object {
     $_ -replace 'SourceDir', "..\ImageRenamer.Wpf\bin\Release\netcoreapp3.0\win10-x64\publish"
 } | Set-Content .\DependencyGroup.wxs
 
-# Now copy this into the ImageRenamer.Wpf.exe element:
-# <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="ImageRenamer" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
-# <Shortcut Id="SendToShortcut" Directory="SendToFolder" Name="ImageRenamer" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
-# And remove the targetdir fragment.
+# Now remove the targetdir fragment.
