@@ -19,4 +19,5 @@ $cleanDirs | ForEach-Object {
 
 # Now copy this into the ImageRenamer.Wpf.exe element:
 # <Shortcut Id="ExeShortcut" Directory="ProgramMenuDir" Name="ImageRenamer" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
+# <Shortcut Id="SendToShortcut" Directory="SendToFolder" Name="ImageRenamer" Advertise="yes" Icon="StartMenuIcon.exe" IconIndex="0" />
 # And remove the targetdir fragment.
