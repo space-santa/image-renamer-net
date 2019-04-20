@@ -14,9 +14,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using ImageRenamer;
+using System.Globalization;
 
 namespace ImageRenamer.Wpf
 {
+    public class MyColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string text = value as string;
+
+            if (text.Contains("renamed")) { return Brushes.DarkGray; }
+            if (text.Contains("find")) { return Brushes.Red; }
+
+            return Brushes.White;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -83,11 +101,11 @@ namespace ImageRenamer.Wpf
                 }
                 catch (Exception)
                 {
-                    newName = "Can't find a new name.";
+                    newName = "Can't find a new name ☹";
                 }
                 if (newName == name)
                 {
-                    newName = "Already renamed.";
+                    newName = "Already renamed 💯✔";
                 }
 
                 viewList.Add($"{name} --> {newName}");

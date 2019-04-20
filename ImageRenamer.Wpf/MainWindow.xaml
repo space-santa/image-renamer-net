@@ -5,7 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageRenamer.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="500" Background="Black">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="72" />
+            <Setter Property="Height" Value="56" />
+            <Setter Property="FontSize" Value="36" />
+        </Style>
+    </Window.Resources>
 
     <Grid HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
@@ -15,12 +31,26 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" Grid.Column="0" x:Name="PreviewList" HorizontalAlignment="Center" MaxHeight="700"/>
+        <ListBox Grid.Row="0" 
+                 Grid.Column="0" 
+                 x:Name="PreviewList" 
+                 VerticalAlignment="Center" 
+                 HorizontalAlignment="Center" 
+                 MaxHeight="700">
+            <ListBox.ItemTemplate>
+                <DataTemplate xmlns:l="clr-namespace:ImageRenamer.Wpf">
+                    <DataTemplate.Resources>
+                        <l:MyColorConverter x:Key="MyColorConverter" />
+                    </DataTemplate.Resources>
+                    <TextBlock Text="{Binding}" Foreground="{Binding Converter={StaticResource MyColorConverter}}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="OpenButton" Click="OpenButton_Click" FontSize="36">📂</Button>
-            <Button x:Name="RenameButton" Click="RenameButton_ClickAsync" FontSize="36">⚙</Button>
-            <Button x:Name="CancelButton" Click="CancelButton_Click" FontSize="36">❌</Button>
-            <Button x:Name="ExitButton" Click="ExitButton_Click" FontSize="36">🚪</Button>
+            <Button x:Name="OpenButton" Click="OpenButton_Click">📂</Button>
+            <Button x:Name="RenameButton" Click="RenameButton_ClickAsync">⚙</Button>
+            <Button x:Name="CancelButton" Click="CancelButton_Click">❌</Button>
+            <Button x:Name="ExitButton" Click="ExitButton_Click">🚪</Button>
         </StackPanel>
     </Grid>
 </Window>
