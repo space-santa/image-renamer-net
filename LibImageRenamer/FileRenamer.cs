@@ -45,7 +45,11 @@ namespace ImageRenamer
             try
             {
                 var to = GetNewFullPath(path);
-                _mover.Move(path, to);
+
+                if (to != path)
+                {
+                    _mover.Move(path, to);
+                }
             }
             catch (IOException ex)
             {
@@ -120,6 +124,7 @@ namespace ImageRenamer
             formats.Add("I\\MG_yyyyMMdd_HHmmss.jp\\g");
             formats.Add("VID_yyyyMMdd_HHmmss.\\mp4");
             formats.Add("yyyyMMdd_HHmmss.\\mp4");
+            formats.Add("yyyy-MM-dd_HH.mm.ss.\\mp4");
 
             foreach (string format in formats)
             {
