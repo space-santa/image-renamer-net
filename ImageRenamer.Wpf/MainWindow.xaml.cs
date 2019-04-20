@@ -75,7 +75,22 @@ namespace ImageRenamer.Wpf
                 var name = Path.GetFileName(file);
                 var path = Path.GetFullPath(file);
                 var fileType = Path.GetExtension(file);
-                viewList.Add($"{name} --> {FileRenamer.GetNewName(path)}{fileType}");
+
+                var newName = "";
+                try
+                {
+                    newName = $"{FileRenamer.GetNewName(path)}{fileType}";
+                }
+                catch (Exception)
+                {
+                    newName = "Can't find a new name.";
+                }
+                if (newName == name)
+                {
+                    newName = "Already renamed.";
+                }
+
+                viewList.Add($"{name} --> {newName}");
             }
         }
 
