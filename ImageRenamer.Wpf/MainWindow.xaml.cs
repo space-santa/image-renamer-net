@@ -98,17 +98,24 @@ namespace ImageRenamer.Wpf
                 try
                 {
                     newName = $"{FileRenamer.GetNewName(path)}{fileType}";
+
+                    if (newName == name)
+                    {
+                        name = $"✔ {name}";
+                        newName = "Already renamed 💯";
+                    }
+                    else
+                    {
+                        name = $"⚙ {name}";
+                    }
                 }
                 catch (Exception)
                 {
+                    name = $"💥 {name}";
                     newName = "Can't find a new name ☹";
                 }
-                if (newName == name)
-                {
-                    newName = "Already renamed 💯✔";
-                }
 
-                viewList.Add($"{name} --> {newName}");
+                viewList.Add($"{name} ➡ {newName}");
             }
         }
 
