@@ -1,1 +1,0 @@
-dotnet publish ImageRenamer.Wpf/ImageRenamer.Wpf.csproj -c Release
