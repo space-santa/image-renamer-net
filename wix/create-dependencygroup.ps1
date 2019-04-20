@@ -1,4 +1,4 @@
-heat.exe dir ..\ImageRenamer.Wpf\bin\Release\netcoreapp3.0\win10-x64\publish -cg DependencyGroup -out DependencyGroup.wxs
+heat.exe dir ..\ImageRenamer.Wpf\bin\Release\netcoreapp3.0\publish -cg DependencyGroup -out DependencyGroup.wxs
 
 $XMLfile = '.\DependencyGroup.wxs'
 [XML]$xml = Get-Content $XMLfile
@@ -14,7 +14,7 @@ $cleanDirs = $cleanGuids | ForEach-Object {
 }
 
 $cleanDirs | ForEach-Object {
-    $_ -replace 'SourceDir', "..\ImageRenamer.Wpf\bin\Release\netcoreapp3.0\win10-x64\publish"
+    $_ -replace 'SourceDir', "..\ImageRenamer.Wpf\bin\Release\netcoreapp3.0\publish"
 } | Set-Content .\DependencyGroup.wxs
 
 # Now remove the targetdir fragment.
