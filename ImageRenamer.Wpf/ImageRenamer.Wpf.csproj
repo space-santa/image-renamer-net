@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <ItemGroup>
+    <None Remove="Common\ColorBase.xaml" />
+    <None Remove="Common\StyleBase.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LibImageRenamer\LibImageRenamer.csproj" />
   </ItemGroup>
 
