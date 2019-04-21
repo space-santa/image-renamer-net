@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Name="ImageRenamer" Manufacturer="SpaceSanta" Id="0531d2c3-612a-4840-8964-0426688a70f3" UpgradeCode="7a9890e2-ca90-4ecc-8397-7b39d662d879" Language="1033" Codepage="1252" Version="1.0.4a">
+  <Product Name="ImageRenamer" Manufacturer="SpaceSanta" Id="0531d2c3-612a-4840-8964-0426688a70f3" UpgradeCode="7a9890e2-ca90-4ecc-8397-7b39d662d879" Language="1033" Codepage="1252" Version="1.1.0">
     <Package Id="*" Description="[ProductName] installer" Comments="SpaceSanta is the best" Manufacturer="SpaceSanta" InstallerVersion="100" Languages="1033" Compressed="yes" SummaryCodepage="1252" />
     <Upgrade Id="7a9890e2-ca90-4ecc-8397-7b39d662d879">
       <UpgradeVersion OnlyDetect="no" Property="PREVIOUSFOUND" Minimum="0.0.0" IncludeMinimum="yes" Maximum="1.0.0" IncludeMaximum="no" />

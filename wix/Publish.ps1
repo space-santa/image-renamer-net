@@ -1,4 +1,4 @@
-$version = "1.0.4"
+$version = "1.1.0"
 $PathToPublish = "..\ImageRenamer.Wpf\bin\Release\netcoreapp3.0\publish"
 
 dotnet publish ../ImageRenamer.Wpf/ImageRenamer.Wpf.csproj -c Release
