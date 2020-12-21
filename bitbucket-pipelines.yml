@@ -1,9 +1,0 @@
-image: microsoft/dotnet:sdk
-
-pipelines:
-  default:
-    - step:
-        caches:
-          - dotnetcore
-        script:
-          - dotnet test ./ImageRenamer.UnitTests/ImageRenamer.UnitTests.csproj
