@@ -65,6 +65,7 @@ namespace ImageRenamer.Wpf
             if (extension == ".jpg") return true;
             if (extension == ".jpeg") return true;
             if (extension == ".mp4") return true;
+            if (extension == ".png") return true;
             return false;
         }
 
@@ -73,7 +74,7 @@ namespace ImageRenamer.Wpf
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Media";
             dlg.DefaultExt = ".jpg";
-            dlg.Filter = "Photos/Videos | *.jpg; *.jpeg; *.mp4";
+            dlg.Filter = "Photos/Videos | *.jpg; *.jpeg; *.mp4; *.png";
             dlg.Multiselect = true;
 
             Nullable<bool> result = dlg.ShowDialog();

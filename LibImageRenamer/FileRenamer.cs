@@ -125,6 +125,8 @@ namespace ImageRenamer
             formats.Add("VID_yyyyMMdd_HHmmss.\\mp4");
             formats.Add("yyyyMMdd_HHmmss.\\mp4");
             formats.Add("yyyy-MM-dd_HH.mm.ss.\\mp4");
+            formats.Add("\\M\\T\\GA d_MM_yyyy h_mm_ss tt.pn\\g");
+            formats.Add("\\M\\T\\GA d_MM_yyyy h_mm_ss tt.\\mp4");
 
             foreach (string format in formats)
             {
